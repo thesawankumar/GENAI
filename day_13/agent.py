@@ -12,7 +12,7 @@ llm = ChatOllama(
 )
 
 # -------- Tools --------
-search_tool = DuckDuckGoSearchRun()
+# search_tool = DuckDuckGoSearchRun()
 
 @tool
 def get_weather_data(city: str) -> str:
@@ -31,13 +31,13 @@ prompt = hub.pull("hwchase17/react")
 # -------- Agent --------
 agent = create_react_agent(
     llm=llm,
-    tools=[search_tool, get_weather_data],
+    tools=[get_weather_data],
     prompt=prompt
 )
 
 agent_executor = AgentExecutor(
     agent=agent,
-    tools=[search_tool, get_weather_data],
+    tools=[ get_weather_data],
     verbose=True
 )
 
